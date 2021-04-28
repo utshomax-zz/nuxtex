@@ -1,5 +1,9 @@
 {
     "builds": [
+        {
+            "src": "api/**/*.js",
+            "use": "@vercel/node"
+          },
       {
         "src": "nuxt.config.js",
         "use": "@nuxtjs/vercel-builder",
@@ -8,10 +12,8 @@
         }
       }
     ],
-    "rewrites": [
-        { 
-            "source": "/api/(.*)", 
-            "destination": "/api"
-        }
+    "routes": [
+        { "src": "/api/(.*)", "dest": "api/routes/$1" },
+        { "src": "/api", "dest": "api/routes/index.js" }
     ]
   }
